@@ -4,7 +4,7 @@ inputs:
   build_result:  # id of input
     description: 'number of milliseconds to wait'
     required: true
-    default: '[]'
+    default: '[{"steps":[]}]'
 outputs:
   build: # output will be available to future steps
     description: 'The current time after waiting'

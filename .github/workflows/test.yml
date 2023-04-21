@@ -22,4 +22,4 @@ jobs:
     - uses: actions/checkout@v3
     - uses: ./
       with:
-        build_result: '[]'
+        build_result: '[{"steps":[]}]'
