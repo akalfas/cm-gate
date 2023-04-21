@@ -1,12 +1,16 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  milliseconds:  # id of input
+  build_result:  # id of input
     description: 'number of milliseconds to wait'
     required: true
-    default: '1000'
+    default: '[{"steps":[]}]'
 outputs:
-  time: # output will be available to future steps
+  build: # output will be available to future steps
+    description: 'The current time after waiting'
+  unitTest: # output will be available to future steps
+    description: 'The current time after waiting'
+  codeQuality: # output will be available to future steps
     description: 'The current time after waiting'
 runs:
   using: 'node16'
