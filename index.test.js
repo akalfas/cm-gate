@@ -1,23 +1,9 @@
-const wait = require('./wait');
 const process = require('process');
 const cp = require('child_process');
 const path = require('path');
-
-test('throws invalid number', async () => {
-  await expect(wait('foo')).rejects.toThrow('milliseconds not a number');
-});
-
-test('wait 500 ms', async () => {
-  const start = new Date();
-  await wait(500);
-  const end = new Date();
-  var delta = Math.abs(end - start);
-  expect(delta).toBeGreaterThanOrEqual(500);
-});
-
 // shows how the runner will run a javascript action with env / stdout protocol
 test('test runs', () => {
-  process.env['INPUT_MILLISECONDS'] = 100;
+  process.env['INPUT_BUILD_RESULT'] = '[{"phase":"build","url":"/mnt/git","steps":[{"name":"build","succeeded":true,"artefacts":[{"path":"build/aem-guides-wknd.all-2.1.21-SNAPSHOT.zip","type":"content-package","size":140125708,"hash":"c62726b51288bd1d7a0850d0bf024c204e82aaf3920ec865b0da7164baf6204a3f99bc04f7f21de13d2affcf6f5403a36d557698613e15c49af3bef53a9cd2ae","algo":"sha512"},{"path":"build/aem-guides-wknd.dispatcher.cloud-2.1.21-SNAPSHOT.zip","type":"dispatcher-configuration","size":24913,"hash":"70ec4478410f53d7d1f68aed6561820274a36668a638d076017395ffc5e6a5e434cef742673f463929c7cac88704428b8387f28ca885577207ce511df8b2eb81","algo":"sha512"},{"path":"build/aem-guides-wknd.it.tests-2.1.21-SNAPSHOT-jar-with-dependencies.jar","type":"functional-tests","size":null,"hash":"fd01c4ce18c2f5cd7dd4d2f6edc0bd6cb9495c400f9958c9801b1d05726e71f936fb2085ae20d9cd1a993f17285dcc2e23bd1f187470521c0553828d05c7b3be","algo":"sha512"}],"logs":[{"path":"build/maven_build.log","type":"user-log"},{"path":"build/git_changelog.txt","type":"git-changelog"}]},{"name":"unitTest","succeeded":true,"artefacts":[],"logs":[]},{"name":"codeQuality","succeeded":true,"artefacts":[{"path":"build/project_status.json","type":"code-scan-result","size":null,"hash":null,"algo":null},{"path":"build/project_issues.csv","type":"code-scan-issues","size":null,"hash":null,"algo":null}],"logs":[{"path":"build/code_quality_scan.log","type":"user-log"}],"result":[{"qualifier":"d08c45958bd47c3b9fe355135064ea2b34481ce8","results":[{"kpi":"skipped_tests","value":"0"},{"kpi":"duplicated_lines_density","value":"0.0"},{"kpi":"security_rating","value":"A"},{"kpi":"reliability_rating","value":"C"},{"kpi":"open_issues","value":"12"},{"kpi":"coverage","value":"98.0"},{"kpi":"sqale_rating","value":"A"},{"kpi":"cloud_service_compatibility_issues","value":"0"}]}]}]}]';
   const ip = path.join(__dirname, 'index.js');
   const result = cp.execSync(`node ${ip}`, {env: process.env}).toString();
   console.log(result);
