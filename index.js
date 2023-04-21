@@ -9,7 +9,7 @@ async function run() {
 	let results = steps.map((step) => {
 		return {
 			'name': step.name,
-			'yey': step.succeeded
+			'yey': step.succeeded ? "success" : "failure"
 		};
 	});
 	results.forEach((result) => {
